@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import * as firebase from 'firebase';
+import Leaderboard from './components/Leaderboard.js';
+
+var config = {
+  apiKey: "AIzaSyDNkFwYVcL4865-9q-IwKYLNqc4ywy9-uQ",
+  authDomain: "leaderboard-6e03c.firebaseapp.com",
+  databaseURL: "https://leaderboard-6e03c.firebaseio.com",
+  projectId: "leaderboard-6e03c",
+  storageBucket: "leaderboard-6e03c.appspot.com",
+  messagingSenderId: "699921742824"
+};
+firebase.initializeApp(config);
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Leaderboard firebase={ firebase } />
       </div>
     );
   }
