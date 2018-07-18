@@ -1,23 +1,37 @@
 import React, { Component } from 'react';
 import './App.css';
-import * as firebase from 'firebase';
 import Leaderboard from './components/Leaderboard.js';
 
-var config = {
-  apiKey: "AIzaSyDNkFwYVcL4865-9q-IwKYLNqc4ywy9-uQ",
-  authDomain: "leaderboard-6e03c.firebaseapp.com",
-  databaseURL: "https://leaderboard-6e03c.firebaseio.com",
-  projectId: "leaderboard-6e03c",
-  storageBucket: "leaderboard-6e03c.appspot.com",
-  messagingSenderId: "699921742824"
-};
-firebase.initializeApp(config);
-
 class App extends Component {
+  constructor(props) {
+  super(props);
+  this.state = {
+    users: [{name: "Tj", score: 1},
+            {name: "Chris", score: 69},
+            {name: "Dave", score: 17},
+            {name: "Ben", score: 11},
+            {name: "Caty", score: 21},
+            {name: "Miller", score: 33},
+            {name: "Zack", score: 88},
+            {name: "Sam", score: 42},
+            {name: "Nicky", score: 22},
+            {name: "Cheyenne", score: 55},
+            {name: "Adela", score: 72},
+            {name: "Wongo", score: 35},
+            {name: "Brett", score: 98},
+            {name: "Gina", score: 4},
+            {name: "Allen", score: 7},
+            {name: "Matt", score: 46},
+            {name: "Amanda", score: 31},
+            {name: "Jamie", score: 100},
+            {name: "Sarah", score: 56},
+            {name: "Owen", score: 45}]
+  };
+}
   render() {
     return (
       <div className="App">
-        <Leaderboard firebase={ firebase } />
+        <Leaderboard users={this.state.users}/>
       </div>
     );
   }
