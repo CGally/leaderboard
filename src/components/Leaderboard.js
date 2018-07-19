@@ -11,12 +11,14 @@ class Leaderboard extends Component {
     this.sortUsers = this.sortUsers.bind(this);
     this.filterRank = this.filterRank.bind(this);
   }
+
   componentDidMount() {
     let ranking = this.state.users;
     ranking.sort(this.compare).reverse();
     ranking.map((user, index) => user.rank = index +1);
     this.setState({ ranking: ranking});
   }
+
   compare(a,b) {
     if (a.score < b.score)
       return -1;
@@ -24,6 +26,7 @@ class Leaderboard extends Component {
       return 1;
     return 0;
   }
+
   sortUsers() {
     const ranking = this.state.ranking;
     if(this.state.asc === true) {
@@ -34,27 +37,27 @@ class Leaderboard extends Component {
       this.setState({ asc: true});
     }
   }
+
   filterRank = function (e) {
     e.preventDefault();
-    let ranking = this.state.ranking;
+    let ranking = this.state.users;
     let newRanking = [];
-    const inputLength = e.target[0].value.length
+    const inputLength = e.target.value.length
     for(var i = 0; i < ranking.length; i++) {
       const str = ranking[i].name.slice(0, inputLength).toLowerCase();
-      console.log(str)
-      if(str === e.target[0].value.toLowerCase()) {
+      if(str === e.target.value.toLowerCase()) {
         newRanking.push(ranking[i]);
       }
     }
     this.setState({ ranking: newRanking.sort(this.compare).reverse()});
   }
+
   render() {
     return (
       <div>
         <h1>Leaderboard</h1>
-        <form onSubmit={this.filterRank}>
+        <form onChange={this.filterRank}>
           Name: <input type="search" name="search" placeholder="Search"/>
-          <input type="submit" value="Submit"/>
         </form>
         <table id="lBoard">
           <colgroup>
